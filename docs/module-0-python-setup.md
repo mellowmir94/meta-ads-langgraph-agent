@@ -78,6 +78,16 @@ Create a local `.env` file:
 Copy-Item .env.example .env
 ```
 
+For free-only learning, use Gemini with a Google AI Studio free-tier key:
+
+```env
+LLM_PROVIDER=gemini
+GEMINI_API_KEY=your_key_here
+LLM_MODEL=gemini-3.1-flash-lite
+```
+
+Keep billing disabled in Google AI Studio if you want free-only usage.
+
 Use OpenAI:
 
 ```env
@@ -92,14 +102,6 @@ Or use Claude:
 LLM_PROVIDER=anthropic
 ANTHROPIC_API_KEY=your_key_here
 LLM_MODEL=claude-3-5-haiku-latest
-```
-
-Or use Gemini:
-
-```env
-LLM_PROVIDER=gemini
-GEMINI_API_KEY=your_key_here
-LLM_MODEL=gemini-3.1-flash-lite
 ```
 
 Never commit `.env`.

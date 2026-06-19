@@ -12,7 +12,7 @@ Implemented:
 
 - Python project structure
 - environment variable configuration
-- OpenAI or Claude chat client wrapper
+- Gemini, OpenAI, or Claude chat client wrapper
 - simple terminal chat interface
 - structured logging setup
 - first tests
@@ -44,6 +44,8 @@ LLM Client Wrapper
   +--> OpenAI
   |
   +--> Anthropic Claude
+  |
+  +--> Google Gemini
 ```
 
 The initial architecture is intentionally small. The goal is to learn the LLM boundary first before adding LangChain and LangGraph abstractions.
@@ -88,9 +90,18 @@ Create local environment variables:
 Copy-Item .env.example .env
 ```
 
-Then set either `OPENAI_API_KEY` or `ANTHROPIC_API_KEY`.
+For free-only learning, use a Google AI Studio free-tier key and set `GEMINI_API_KEY`.
+Do not enable billing unless you intentionally want paid API usage.
 
 ## Run Chat
+
+Gemini free-tier learning setup:
+
+```bash
+$env:LLM_PROVIDER="gemini"
+$env:LLM_MODEL="gemini-3.1-flash-lite"
+python -m app.chat
+```
 
 OpenAI:
 
@@ -108,14 +119,6 @@ $env:LLM_MODEL="claude-3-5-haiku-latest"
 python -m app.chat
 ```
 
-Gemini:
-
-```bash
-$env:LLM_PROVIDER="gemini"
-$env:LLM_MODEL="gemini-3.1-flash-lite"
-python -m app.chat
-```
-
 ## Run Tests
 
 ```bash
@@ -125,6 +128,12 @@ pytest
 ## Safety Rules
 
 This agent is read-only. It must never modify campaigns, budgets, ads, ad sets, or creatives automatically. Any future write action must require explicit human approval.
+
+## Cost Safety
+
+The recommended learning setup uses `LLM_PROVIDER=gemini` and `LLM_MODEL=gemini-3.1-flash-lite` with a free-tier Google AI Studio key.
+
+Keep billing disabled if you want free-only usage. Free tier limits can change, so monitor usage in Google AI Studio.
 
 Recommendations must include:
 
