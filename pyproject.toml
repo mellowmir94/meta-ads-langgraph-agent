@@ -1,0 +1,16 @@
+[project]
+name = "meta-ads-langgraph-agent"
+version = "0.1.0"
+description = "AI-powered Meta Ads monitoring agent portfolio project."
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
