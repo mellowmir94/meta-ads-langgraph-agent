@@ -147,6 +147,8 @@ LANGSMITH_API_KEY=your_langsmith_key_here
 LANGSMITH_PROJECT=meta-ads-langgraph-agent
 ```
 
+When tracing is enabled, each terminal chat request is recorded as a `chat_turn` run in LangSmith.
+
 Recommendations must include:
 
 - problem
@@ -170,4 +172,5 @@ Recommendations must include:
 ## Learning Guides
 
 - [Module 0 - Python Setup](docs/module-0-python-setup.md)
+- [Module 1 - Observability](docs/module-1-observability.md)
 - [Phase 1 Architecture](docs/phase-1-architecture.md)

@@ -3,6 +3,7 @@ from __future__ import annotations
 import logging
 
 from dotenv import load_dotenv
+from langsmith import traceable
 
 from app.config import Settings
 from app.llm_client import create_llm_client
@@ -33,12 +34,19 @@ def format_chat_error(error: Exception) -> str:
     return "The LLM request failed. Check your provider settings and try again."
 
 
+@traceable(name="chat_turn", run_type="chain")
+def run_chat_turn(user_input: str, settings: Settings) -> str:
+    client = create_llm_client(settings)
+    return client.chat(
+        system_prompt=SYSTEM_PROMPT,
+        user_prompt=build_user_prompt(user_input),
+    )
+
+
 def run_chat() -> None:
     load_dotenv()
     settings = Settings.from_env()
     configure_logging(settings.log_level)
-
-    client = create_llm_client(settings)
 
     LOGGER.info(
         "Starting chat with provider=%s model=%s",
@@ -57,9 +65,9 @@ def run_chat() -> None:
             continue
 
         try:
-            response = client.chat(
-                system_prompt=SYSTEM_PROMPT,
-                user_prompt=build_user_prompt(user_input),
+            response = run_chat_turn(
+                user_input=user_input,
+                settings=settings,
             )
         except Exception as error:
             LOGGER.exception("Chat request failed")
