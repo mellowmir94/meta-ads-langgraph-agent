@@ -88,6 +88,16 @@ LLM_MODEL=gemini-3.1-flash-lite
 
 Keep billing disabled in Google AI Studio if you want free-only usage.
 
+Optional LangSmith tracing for later LangChain modules:
+
+```env
+LANGSMITH_TRACING=true
+LANGSMITH_API_KEY=your_langsmith_key_here
+LANGSMITH_PROJECT=meta-ads-langgraph-agent
+```
+
+LangSmith is not required for Phase 1, but it will become useful when the project adds LangChain chains, agents, and LangGraph workflows.
+
 Use OpenAI:
 
 ```env

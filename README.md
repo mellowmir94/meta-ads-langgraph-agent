@@ -135,6 +135,18 @@ The recommended learning setup uses `LLM_PROVIDER=gemini` and `LLM_MODEL=gemini-
 
 Keep billing disabled if you want free-only usage. Free tier limits can change, so monitor usage in Google AI Studio.
 
+## Observability
+
+LangSmith tracing is optional in Phase 1 and becomes useful when LangChain and LangGraph are introduced.
+
+Local `.env` placeholders:
+
+```env
+LANGSMITH_TRACING=true
+LANGSMITH_API_KEY=your_langsmith_key_here
+LANGSMITH_PROJECT=meta-ads-langgraph-agent
+```
+
 Recommendations must include:
 
 - problem
