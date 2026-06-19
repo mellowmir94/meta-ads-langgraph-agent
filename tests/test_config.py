@@ -23,7 +23,7 @@ def test_settings_supports_gemini_defaults() -> None:
     settings = Settings.from_env({"LLM_PROVIDER": "gemini"})
 
     assert settings.llm_provider == "gemini"
-    assert settings.llm_model == "gemini-3.5-flash"
+    assert settings.llm_model == "gemini-3.1-flash-lite"
 
 
 def test_settings_rejects_unknown_provider() -> None:

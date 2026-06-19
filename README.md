@@ -112,7 +112,7 @@ Gemini:
 
 ```bash
 $env:LLM_PROVIDER="gemini"
-$env:LLM_MODEL="gemini-3.5-flash"
+$env:LLM_MODEL="gemini-3.1-flash-lite"
 python -m app.chat
 ```
 

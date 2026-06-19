@@ -99,7 +99,7 @@ Or use Gemini:
 ```env
 LLM_PROVIDER=gemini
 GEMINI_API_KEY=your_key_here
-LLM_MODEL=gemini-3.5-flash
+LLM_MODEL=gemini-3.1-flash-lite
 ```
 
 Never commit `.env`.

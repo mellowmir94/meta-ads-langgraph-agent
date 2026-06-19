@@ -26,7 +26,7 @@ class Settings:
         default_models = {
             "openai": "gpt-4o-mini",
             "anthropic": "claude-3-5-haiku-latest",
-            "gemini": "gemini-3.5-flash",
+            "gemini": "gemini-3.1-flash-lite",
         }
 
         return cls(

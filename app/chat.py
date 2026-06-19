@@ -22,6 +22,17 @@ def build_user_prompt(user_input: str) -> str:
     return user_input.strip()
 
 
+def format_chat_error(error: Exception) -> str:
+    message = str(error)
+    if "503" in message and "UNAVAILABLE" in message:
+        return (
+            "The LLM provider is temporarily unavailable because of high demand. "
+            "Try again in a moment or switch to a lighter model."
+        )
+
+    return "The LLM request failed. Check your provider settings and try again."
+
+
 def run_chat() -> None:
     load_dotenv()
     settings = Settings.from_env()
@@ -45,10 +56,16 @@ def run_chat() -> None:
         if not user_input:
             continue
 
-        response = client.chat(
-            system_prompt=SYSTEM_PROMPT,
-            user_prompt=build_user_prompt(user_input),
-        )
+        try:
+            response = client.chat(
+                system_prompt=SYSTEM_PROMPT,
+                user_prompt=build_user_prompt(user_input),
+            )
+        except Exception as error:
+            LOGGER.exception("Chat request failed")
+            print(f"\nAgent: {format_chat_error(error)}")
+            continue
+
         print(f"\nAgent: {response}")
 
 
