@@ -137,3 +137,8 @@ Recommendations must include:
 8. Phase 8 - Telegram
 9. Phase 9 - LangSmith
 10. Phase 10 - Production Readiness
+
+## Learning Guides
+
+- [Module 0 - Python Setup](docs/module-0-python-setup.md)
+- [Phase 1 Architecture](docs/phase-1-architecture.md)
