@@ -55,6 +55,29 @@ class AnthropicChatClient:
         return "".join(block.text for block in response.content if block.type == "text")
 
 
+@dataclass(frozen=True)
+class GeminiChatClient:
+    api_key: str
+    model: str
+    temperature: float
+
+    def chat(self, system_prompt: str, user_prompt: str) -> str:
+        from google import genai
+        from google.genai import types
+
+        client = genai.Client(api_key=self.api_key)
+        response = client.models.generate_content(
+            model=self.model,
+            contents=user_prompt,
+            config=types.GenerateContentConfig(
+                system_instruction=system_prompt,
+                temperature=self.temperature,
+            ),
+        )
+
+        return response.text or ""
+
+
 def create_llm_client(settings: Settings) -> ChatClient:
     api_key = settings.api_key_for_provider()
 
@@ -67,6 +90,13 @@ def create_llm_client(settings: Settings) -> ChatClient:
 
     if settings.llm_provider == "anthropic":
         return AnthropicChatClient(
+            api_key=api_key,
+            model=settings.llm_model,
+            temperature=settings.llm_temperature,
+        )
+
+    if settings.llm_provider == "gemini":
+        return GeminiChatClient(
             api_key=api_key,
             model=settings.llm_model,
             temperature=settings.llm_temperature,

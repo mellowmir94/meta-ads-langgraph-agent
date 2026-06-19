@@ -108,6 +108,14 @@ $env:LLM_MODEL="claude-3-5-haiku-latest"
 python -m app.chat
 ```
 
+Gemini:
+
+```bash
+$env:LLM_PROVIDER="gemini"
+$env:LLM_MODEL="gemini-3.5-flash"
+python -m app.chat
+```
+
 ## Run Tests
 
 ```bash

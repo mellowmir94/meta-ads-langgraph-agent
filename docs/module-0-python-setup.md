@@ -94,6 +94,14 @@ ANTHROPIC_API_KEY=your_key_here
 LLM_MODEL=claude-3-5-haiku-latest
 ```
 
+Or use Gemini:
+
+```env
+LLM_PROVIDER=gemini
+GEMINI_API_KEY=your_key_here
+LLM_MODEL=gemini-3.5-flash
+```
+
 Never commit `.env`.
 
 ## Run The Phase 1 Chat
