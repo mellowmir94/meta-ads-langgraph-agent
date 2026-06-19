@@ -35,7 +35,13 @@ def format_chat_error(error: Exception) -> str:
 
 
 @traceable(name="chat_turn", run_type="chain")
-def run_chat_turn(user_input: str, settings: Settings) -> str:
+def run_chat_turn(
+    user_input: str,
+    llm_provider: str,
+    llm_model: str,
+    llm_temperature: float,
+) -> str:
+    settings = Settings.from_env()
     client = create_llm_client(settings)
     return client.chat(
         system_prompt=SYSTEM_PROMPT,
@@ -67,7 +73,9 @@ def run_chat() -> None:
         try:
             response = run_chat_turn(
                 user_input=user_input,
-                settings=settings,
+                llm_provider=settings.llm_provider,
+                llm_model=settings.llm_model,
+                llm_temperature=settings.llm_temperature,
             )
         except Exception as error:
             LOGGER.exception("Chat request failed")
