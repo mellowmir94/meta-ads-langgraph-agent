@@ -138,6 +138,12 @@ python -m evaluations.sync_langsmith_dataset
 python -m evaluations.run_langsmith_experiment
 ```
 
+## Run Production Check
+
+```bash
+python -m workflows.production_check
+```
+
 ## Safety Rules
 
 This agent is read-only. It must never modify campaigns, budgets, ads, ad sets, or creatives automatically. Any future write action must require explicit human approval.
@@ -187,4 +193,5 @@ Recommendations must include:
 - [Module 0 - Python Setup](docs/module-0-python-setup.md)
 - [Module 1 - Observability](docs/module-1-observability.md)
 - [Module 2 - Evaluation](docs/module-2-evaluation.md)
+- [Module 3 - Moving Towards Production](docs/module-3-production.md)
 - [Phase 1 Architecture](docs/phase-1-architecture.md)
