@@ -125,6 +125,12 @@ python -m app.chat
 pytest
 ```
 
+## Run Evaluation
+
+```bash
+python -m evaluations.run_code_eval
+```
+
 ## Safety Rules
 
 This agent is read-only. It must never modify campaigns, budgets, ads, ad sets, or creatives automatically. Any future write action must require explicit human approval.
@@ -173,4 +179,5 @@ Recommendations must include:
 
 - [Module 0 - Python Setup](docs/module-0-python-setup.md)
 - [Module 1 - Observability](docs/module-1-observability.md)
+- [Module 2 - Evaluation](docs/module-2-evaluation.md)
 - [Phase 1 Architecture](docs/phase-1-architecture.md)

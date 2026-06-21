@@ -1,0 +1,56 @@
+[
+  {
+    "case_id": "baseline_lead_gen",
+    "input_text": "Review this campaign: spend RM100, leads 5, clicks 80, impressions 4000.",
+    "campaign_metrics": {
+      "spend": 100,
+      "leads": 5,
+      "clicks": 80,
+      "impressions": 4000
+    },
+    "expected_metrics": {
+      "ctr_percent": 2.0,
+      "cpc": 1.25,
+      "cpm": 25.0,
+      "cpl": 20.0,
+      "conversion_rate_percent": 6.25
+    },
+    "expected_decision": "monitor"
+  },
+  {
+    "case_id": "no_leads_wasted_spend",
+    "input_text": "Review this campaign: spend RM250, leads 0, clicks 120, impressions 10000.",
+    "campaign_metrics": {
+      "spend": 250,
+      "leads": 0,
+      "clicks": 120,
+      "impressions": 10000
+    },
+    "expected_metrics": {
+      "ctr_percent": 1.2,
+      "cpc": 2.08,
+      "cpm": 25.0,
+      "cpl": null,
+      "conversion_rate_percent": 0.0
+    },
+    "expected_decision": "investigate"
+  },
+  {
+    "case_id": "low_ctr_high_cpc",
+    "input_text": "Review this campaign: spend RM300, leads 10, clicks 50, impressions 10000.",
+    "campaign_metrics": {
+      "spend": 300,
+      "leads": 10,
+      "clicks": 50,
+      "impressions": 10000
+    },
+    "expected_metrics": {
+      "ctr_percent": 0.5,
+      "cpc": 6.0,
+      "cpm": 30.0,
+      "cpl": 30.0,
+      "conversion_rate_percent": 20.0
+    },
+    "expected_decision": "optimize_creative"
+  }
+]
