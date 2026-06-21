@@ -8,6 +8,7 @@ from typing import Any
 from evaluations.metrics import CalculatedMetrics, CampaignMetrics
 
 DATASET_PATH = Path("data/evaluation/meta_ads_eval_cases.json")
+LANGSMITH_DATASET_NAME = "meta-ads-monitoring-eval-v1"
 
 
 @dataclass(frozen=True)
@@ -17,6 +18,25 @@ class EvaluationCase:
     campaign_metrics: CampaignMetrics
     expected_metrics: CalculatedMetrics
     expected_decision: str
+
+    def to_langsmith_inputs(self) -> dict[str, object]:
+        return {
+            "input_text": self.input_text,
+            "spend": self.campaign_metrics.spend,
+            "impressions": self.campaign_metrics.impressions,
+            "clicks": self.campaign_metrics.clicks,
+            "leads": self.campaign_metrics.leads,
+        }
+
+    def to_langsmith_outputs(self) -> dict[str, object]:
+        return {
+            "ctr_percent": self.expected_metrics.ctr_percent,
+            "cpc": self.expected_metrics.cpc,
+            "cpm": self.expected_metrics.cpm,
+            "cpl": self.expected_metrics.cpl,
+            "conversion_rate_percent": self.expected_metrics.conversion_rate_percent,
+            "expected_decision": self.expected_decision,
+        }
 
 
 def load_evaluation_cases(path: Path = DATASET_PATH) -> list[EvaluationCase]:

@@ -57,6 +57,54 @@ PASS no_leads_wasted_spend
 PASS low_ctr_high_cpc
 ```
 
+## Sync LangSmith Dataset
+
+```bash
+python -m evaluations.sync_langsmith_dataset
+```
+
+This creates or updates:
+
+```text
+meta-ads-monitoring-eval-v1
+```
+
+## Run LangSmith Experiment
+
+This runs the current chat agent against the dataset and scores each output with deterministic evaluators:
+
+```bash
+python -m evaluations.run_langsmith_experiment
+```
+
+Evaluators:
+
+- `metric_accuracy`
+- `recommendation_structure`
+- `read_only_safety`
+
+This uses live LLM calls. For free-only learning, keep the dataset small and use `gemini-3.1-flash-lite`.
+
+## LLM-as-Judge
+
+The project includes an LLM judge prompt in:
+
+```text
+evaluations/llm_judge.py
+```
+
+Use it later when deterministic checks are not enough, for example judging whether a recommendation is practical for a local service business.
+
+## Pairwise Evaluation
+
+The project includes a pairwise comparison helper in:
+
+```text
+evaluations/pairwise.py
+```
+
+Use it later to compare two prompt versions or two model versions.
+
 ## Run Tests
 
 ```bash
@@ -71,9 +119,9 @@ This gives the portfolio project a basic evaluation harness. Recruiters and engi
 
 Later Module 2 lessons will add:
 
-- LangSmith datasets
-- experiment runs
-- LLM-as-judge evaluation
+- larger LangSmith datasets
+- richer experiment metadata
+- stronger LLM-as-judge criteria
 - pairwise comparison between prompt versions
 
 ## GitHub Commit

@@ -131,6 +131,13 @@ pytest
 python -m evaluations.run_code_eval
 ```
 
+Optional LangSmith dataset and experiment:
+
+```bash
+python -m evaluations.sync_langsmith_dataset
+python -m evaluations.run_langsmith_experiment
+```
+
 ## Safety Rules
 
 This agent is read-only. It must never modify campaigns, budgets, ads, ad sets, or creatives automatically. Any future write action must require explicit human approval.
